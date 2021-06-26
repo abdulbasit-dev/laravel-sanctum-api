@@ -17,14 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-
-Route::resource('products', ProductController::class);
+//public routes
+Route::resource('products', ProductController::class)->only('index', 'show', 'search');
 Route::get('products/search/{name}', [ProductController::class, 'search']);
-
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
-Route::post('logout', [AuthController::class, 'logout']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-  return $request->user();
+//protected routes
+Route::group(['middleware' => ['auth:sanctum']], function () {
+  Route::resource('products', ProductController::class)->only('store', 'update', 'destroy');
+  Route::post('logout', [AuthController::class, 'logout']);
 });
