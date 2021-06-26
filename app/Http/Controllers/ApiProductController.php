@@ -1,11 +1,10 @@
 <?php
 
-namespace {{ namespace }};
+namespace App\Http\Controllers;
 
-use {{ rootNamespace }}Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class {{ class }} extends Controller
+class ApiProductController extends Controller
 {
    
     public function index()
@@ -16,8 +15,7 @@ class {{ class }} extends Controller
     public function store(Request $request)
     {
         //
-    }
-    
+\
     public function show($id)
     {
         //
